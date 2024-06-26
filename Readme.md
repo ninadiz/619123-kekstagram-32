@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Antonina Khisametdinova](https://up.htmlacademy.ru/javascript/32/user/619123).
-* Наставник: `Неизвестно`.
+* Наставник: [Артем Новоселов](https://htmlacademy.ru/profile/id1195129).
 
 ---
 
