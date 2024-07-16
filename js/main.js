@@ -61,4 +61,4 @@ const createImageParams = function(idIndex) {
   };
 };
 
-const imageList = Array.from({length: imageListCount}, (__, idIndex) => createImageParams(idIndex + 1));
+Array.from({length: imageListCount}, (__, idIndex) => createImageParams(idIndex + 1));
