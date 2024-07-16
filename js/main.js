@@ -7,6 +7,7 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
+// Функция, которая выбирает случайный элемент из массива
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 const descriptionExamples = [
@@ -26,29 +27,24 @@ const commentatorNames = ['Азат', 'Арзамат', 'Амарзат;, ;Ат�
 
 // Функция создания комментариев к фотографиям
 const createComments = function() {
-
   return {
     id: 135, // любок число, но не должно повторяться
-    avatar: 'img/avatar' + getRandomInteger(1, 6) + '.svg',
+    avatar: `img/avatar${getRandomInteger(1, 6)}.svg`,
     message: getRandomArrayElement(messageExamples),
     name: getRandomArrayElement(commentatorNames),
   };
 };
 
 // Функция создания объектов, содержащих параметры загруженных картинок
-const createImageParams = function() {
-
-  const idNumber = getRandomInteger(1, 25);
-
+const createImageParams = function(idIndex) {
   return {
-    id: idNumber, // Порядковый номер!? Не повторяются.
-    url: 'photos/' + idNumber + '.jpg', // Зависит от if
+    id: idIndex, // Порядковый номер от 1 до 25!? Не повторяются.
+    url: `photos/${idIndex}.jpg`, // Зависит от id
     description: getRandomArrayElement(descriptionExamples),
     likes: getRandomInteger(15, 200),
     comments: Array.from({length: getRandomInteger(0, 30)}, createComments),
   };
 };
 
-const imageList = Array.from({length: imageListCount}, createImageParams);
-
+const imageList = Array.from({length: imageListCount}, (__, idIndex) => createImageParams(idIndex + 1));
 console.log(imageList);
