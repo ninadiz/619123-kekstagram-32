@@ -1,9 +1,9 @@
-const imageListCount = 25;
+const IMAGE_LIST_LENGTH = 25;
 
-const likesCountMin = 15;
-const likesCountMax = 200;
-const commentCountMin = 0;
-const commentCountMax = 30;
+const LIKES_COUNT_MIN = 15;
+const LIKES_COUNT_MAX = 200;
+const COMMENTS_COUNT_MIN = 0;
+const COMMENTS_COUNT_MAX = 30;
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -56,9 +56,9 @@ const createImageParams = function(idIndex) {
     id: idIndex,
     url: `photos/${idIndex}.jpg`,
     description: getRandomArrayElement(descriptionExamples),
-    likes: getRandomInteger(likesCountMin, likesCountMax),
-    comments: Array.from({length: getRandomInteger(commentCountMin, commentCountMax)}, createComments),
+    likes: getRandomInteger(LIKES_COUNT_MIN, LIKES_COUNT_MAX),
+    comments: Array.from({length: getRandomInteger(COMMENTS_COUNT_MIN, COMMENTS_COUNT_MAX)}, createComments),
   };
 };
 
-Array.from({length: imageListCount}, (__, idIndex) => createImageParams(idIndex + 1));
+Array.from({length: IMAGE_LIST_LENGTH}, (__, idIndex) => createImageParams(idIndex + 1));
