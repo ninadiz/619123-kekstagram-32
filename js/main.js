@@ -1,5 +1,10 @@
 const imageListCount = 25;
 
+const likesCountMin = 15;
+const likesCountMax = 200;
+const commentCountMin = 0;
+const commentCountMax = 30;
+
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -25,10 +30,20 @@ const messageExamples = [
 
 const commentatorNames = ['Азат', 'Арзамат', 'Амарзат;, ;Атмарзат', 'Амартзан', 'Армарзан'];
 
+const makeCommentIdGenerator = function() {
+  let commentId = 0;
+  return function() {
+    commentId += 1;
+    return commentId;
+  };
+};
+
+const generateCommentId = makeCommentIdGenerator();
+
 // Функция создания комментариев к фотографиям
 const createComments = function() {
   return {
-    id: 135, // любок число, но не должно повторяться
+    id: generateCommentId(),
     avatar: `img/avatar${getRandomInteger(1, 6)}.svg`,
     message: getRandomArrayElement(messageExamples),
     name: getRandomArrayElement(commentatorNames),
@@ -38,13 +53,12 @@ const createComments = function() {
 // Функция создания объектов, содержащих параметры загруженных картинок
 const createImageParams = function(idIndex) {
   return {
-    id: idIndex, // Порядковый номер от 1 до 25!? Не повторяются.
-    url: `photos/${idIndex}.jpg`, // Зависит от id
+    id: idIndex,
+    url: `photos/${idIndex}.jpg`,
     description: getRandomArrayElement(descriptionExamples),
-    likes: getRandomInteger(15, 200),
-    comments: Array.from({length: getRandomInteger(0, 30)}, createComments),
+    likes: getRandomInteger(likesCountMin, likesCountMax),
+    comments: Array.from({length: getRandomInteger(commentCountMin, commentCountMax)}, createComments),
   };
 };
 
 const imageList = Array.from({length: imageListCount}, (__, idIndex) => createImageParams(idIndex + 1));
-console.log(imageList);
