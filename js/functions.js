@@ -25,5 +25,6 @@ function isPalindrom (string) {
 
 isPalindrom('kayak');
 
-// Дополнительное задание
+// 5.16. Функции возвращаются
+
 
