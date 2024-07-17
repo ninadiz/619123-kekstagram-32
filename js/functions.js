@@ -26,5 +26,32 @@ function isPalindrom (string) {
 isPalindrom('kayak');
 
 // 5.16. Функции возвращаются
+// '08:00', '17:30', '14:00', 90
 
+const getMinutes = function(stroke) {
+  const array = stroke.split(':');
+  const minutesFromZero = Number(array[0]) * 60 + Number(array[1]);
+  return minutesFromZero;
+};
 
+// eslint-disable-next-line no-unused-vars
+const checkTimeRange = function(workStart, workEnd, meetingStart, meetingMinutes) {
+  const minutesStart = getMinutes(workStart);
+  const minutesEnd = getMinutes(workEnd);
+  const meetingMinutesStart = getMinutes(meetingStart);
+  const meetingMinutesEnd = meetingMinutesStart + meetingMinutes;
+
+  let result;
+
+  if (minutesStart <= meetingMinutesStart) {
+    if (minutesEnd >= meetingMinutesEnd) {
+      result = true;
+    } else {
+      result = false;
+    }
+  } else {
+    result = false;
+  }
+
+  return result;
+};
